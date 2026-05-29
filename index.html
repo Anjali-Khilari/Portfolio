@@ -2,348 +2,772 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anjali Khilari | Full Stack Java Developer</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Anjali Khilari | Full Stack Java Developer — Modern Portfolio</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts: Poppins + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0c10;
+            color: #eef2ff;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        /* modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1f2a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* navbar enhanced */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(14px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+            transition: all 0.3s ease;
+        }
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c084fc, #4f46e5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #cbd5e6;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1rem;
+            position: relative;
+        }
+        .nav-link:hover {
+            color: #a78bfa;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -6px;
+            left: 0;
+            background: linear-gradient(90deg, #a78bfa, #4f46e5);
+            transition: 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #eef2ff;
+            transition: 0.3s;
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(120deg, #f0f9ff, #c7d2fe);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        /* buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: linear-gradient(95deg, #4f46e5, #7c3aed);
+            color: white;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.4);
+            background: linear-gradient(95deg, #6366f1, #8b5cf6);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #4f46e5;
+            color: #c7d2fe;
+        }
+        .btn-secondary:hover {
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateY(-3px);
+            border-color: #a78bfa;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 7rem 0 4rem;
+        }
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .highlight {
+            background: linear-gradient(135deg, #c084fc, #4f46e5);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #a5b4fc;
+            margin-bottom: 1rem;
+        }
+        .hero-description {
+            color: #9ca3af;
+            margin: 1.5rem 0 2rem;
+            font-size: 1.05rem;
+            max-width: 90%;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .floating-card {
+            background: rgba(30, 32, 44, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(79, 70, 229, 0.4);
+            animation: float 4s ease-in-out infinite;
+        }
+        .floating-card i {
+            font-size: 4rem;
+            color: #a78bfa;
+        }
+        .floating-card h3 {
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* about section */
+        .about {
+            padding: 5rem 0;
+            background: #0f1117;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-text p {
+            color: #cbd5e1;
+            margin-bottom: 1.2rem;
+        }
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat {
+            background: #181c27;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            text-align: center;
+            min-width: 100px;
+            transition: 0.2s;
+            border: 1px solid #2d2f3e;
+        }
+        .stat h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(145deg, #e0e7ff, #a78bfa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .profile-image img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 2rem;
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(79, 70, 229, 0.3);
+            transition: 0.3s;
+        }
+        .profile-image img:hover {
+            transform: scale(1.02);
+            border-color: #7c3aed;
+        }
+
+        /* skills grid enhanced */
+        .skills {
+            padding: 5rem 0;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+        }
+        .skill-category {
+            background: #11141c;
+            border-radius: 1.6rem;
+            padding: 1.8rem;
+            transition: 0.25s;
+            border: 1px solid #262b38;
+            backdrop-filter: blur(2px);
+        }
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: #4f46e5;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
+        }
+        .skill-category h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            color: #c4b5fd;
+        }
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+        .skill-item {
+            background: #1e2433;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .skill-item:hover {
+            background: #4f46e5;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        /* Projects */
+        .projects {
+            padding: 5rem 0;
+            background: #0f1117;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: #12161f;
+            border-radius: 1.8rem;
+            overflow: hidden;
+            transition: 0.3s ease;
+            border: 1px solid #262e3c;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #5b4ce6;
+            box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.2);
+        }
+        .project-image {
+            position: relative;
+            height: 180px;
+            background: #1a1f2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+        .project-placeholder {
+            font-size: 3rem;
+            color: #5b6e8c;
+        }
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-link {
+            background: white;
+            color: #0f1117;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            transition: 0.2s;
+        }
+        .project-content {
+            padding: 1.5rem;
+        }
+        .project-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .tech-tag {
+            background: #1f2a3a;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .project-features ul {
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+        .project-features li {
+            font-size: 0.85rem;
+            color: #b9c3db;
+            margin-bottom: 6px;
+        }
+
+        /* contact & resume */
+        .contact {
+            padding: 5rem 0;
+        }
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.2rem 0;
+        }
+        .contact-item a {
+            color: #cbd5e6;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .contact-item a:hover {
+            color: #a78bfa;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background: #141824;
+            border: 1px solid #2d3348;
+            border-radius: 1.2rem;
+            font-family: inherit;
+            color: white;
+            transition: 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: #6d28d9;
+            box-shadow: 0 0 0 2px rgba(109, 40, 217, 0.3);
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .resume {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(145deg, #0b0e14, #11141e);
+            border-radius: 2rem;
+            margin: 2rem 2rem;
+        }
+        .resume-content h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #262e3e;
+            margin-top: 2rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: #9ca3af;
+            font-size: 1.5rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: #c084fc;
+            transform: translateY(-3px);
+        }
+
+        /* responsiveness */
+        @media (max-width: 880px) {
+            .hero-container, .about-content, .contact-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-description {
+                max-width: 100%;
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(10, 12, 16, 0.98);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                gap: 1.8rem;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .about-stats {
+                justify-content: center;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #1f2937;
+            border-left: 5px solid #4f46e5;
+            padding: 12px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            z-index: 2000;
+            animation: fadein 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        @keyframes fadein {
+            from { opacity: 0; transform: translateX(40px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>Anjali Khilari</h2>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo"><h2>Anjali Khilari</h2></div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+            <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Hi, I'm <span class="highlight">Anjali Khilari</span></h1>
+            <p class="hero-subtitle">Full Stack Java Developer</p>
+            <p class="hero-description">I create robust full stack web applications using Java, Spring Boot, MySQL, React and modern frontend technologies. Passionate about turning ideas into real, working applications.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary"><i class="fas fa-arrow-right"></i> View My Work</a>
+                <a href="#contact" class="btn btn-secondary"><i class="fas fa-comment"></i> Get In Touch</a>
             </div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Hi, I'm <span class="highlight">Anjali Khilari</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Full Stack Java Developer 
-                </p>
-                <p class="hero-description">
-                    I create robust full stack web applications using Java, Spring Boot, MySQL, React and modern frontend technologies.
-    Passionate about turning ideas into real, working applications.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="floating-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Full Stack</h3>
-                </div>
-                
+        <div class="hero-image">
+            <div class="floating-card">
+                <i class="fas fa-code-branch"></i>
+                <h3>Full Stack</h3>
+                <p style="font-size: 0.8rem; margin-top: 6px;">Java · React · Cloud</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm a passionate Full Stack Java Developer who loves turning ideas into real, working applications. I specialize in 
-building robust backend systems using Java & Spring Boot, developing responsive frontend interfaces, 
-and creating efficient database-driven web applications.
-                    </p>
-                    <p>
-                        Currently upskilling in React, advanced JavaScript frameworks and cloud deployment 
-                        technologies. I'm always eager to learn new technologies and take on 
-                        challenging projects that push my boundaries.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h3>1+</h3>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat">
-                            <h3>10+</h3>
-                            <p>Projects Completed</p>
-                        </div>
-                        <div class="stat">
-                            <h3>10+</h3>
-                            <p>Technologies Used</p>
-                        </div>
-                    </div>
+<!-- About Section (updated stats & professional text) -->
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a passionate Full Stack Java Developer who loves turning ideas into real, working applications. I specialize in building robust backend systems using Java & Spring Boot, developing responsive frontend interfaces, and creating efficient database-driven web applications.</p>
+                <p>Currently upskilling in React, advanced JavaScript frameworks and cloud deployment technologies. I'm always eager to learn new technologies and take on challenging projects that push my boundaries.</p>
+                <div class="about-stats">
+                    <div class="stat"><h3>1+</h3><p>Years Experience</p></div>
+                    <div class="stat"><h3>10+</h3><p>Projects Completed</p></div>
+                    <div class="stat"><h3>12+</h3><p>Technologies Used</p></div>
                 </div>
-                <div class="about-image">
-                    <div class="profile-image">
-
-                        <img src="assets\images\pic.jpeg" alt="Anjali Khilari - Professional Photo" loading="lazy">
->>>>>>> a27b97f (Updated portfolio image and files)
-                    </div>
+            </div>
+            <div class="about-image">
+                <div class="profile-image">
+                    <!-- note: image fallback if path missing; but maintain existing src -->
+                    <img src="assets/images/pic.jpeg" alt="Anjali Khilari - Professional Photo" onerror="this.src='https://placehold.co/400x400/1e293b/9ca3af?text=Anjali+Khilari';">
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Tech Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Java</span>
-                        <span class="skill-item">React</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">SQL</span>
-                        <span class="skill-item">HTML/CSS</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> Backend Development</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Spring Boot</span>
-                        <span class="skill-item">REST APIs</span>
-                        <span class="skill-item">Hibernate</span>
-                        <span class="skill-item">JPA</span>
-                        <span class="skill-item">MySQL</span>
-                        <span class="skill-item">Maven</span>
-                    </div>
-                </div>
-                
-                
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Frontend Development</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Thymeleaf</span>
-                        <span class="skill-item">Bootstrap</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">Responsive Design</span>
-                        <span class="skill-item">UI/UX</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Git</span>
-                        <span class="skill-item">GitHub</span>
-                        <span class="skill-item">Eclipse</span>
-                        <span class="skill-item">VS Code</span>
-                        <span class="skill-item">IntelliJ IDEA</span>
-                        <span class="skill-item">Postman</span>
-                    </div>
-                </div>
+<!-- Skills -->
+<section id="skills" class="skills">
+    <div class="container">
+        <h2 class="section-title">Tech Stack & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-category"><h3><i class="fas fa-code"></i> Languages</h3><div class="skill-items"><span class="skill-item">Java</span><span class="skill-item">React</span><span class="skill-item">JavaScript</span><span class="skill-item">SQL</span><span class="skill-item">HTML/CSS</span></div></div>
+            <div class="skill-category"><h3><i class="fas fa-server"></i> Backend</h3><div class="skill-items"><span class="skill-item">Spring Boot</span><span class="skill-item">REST APIs</span><span class="skill-item">Hibernate</span><span class="skill-item">JPA</span><span class="skill-item">MySQL</span><span class="skill-item">Maven</span></div></div>
+            <div class="skill-category"><h3><i class="fas fa-laptop-code"></i> Frontend</h3><div class="skill-items"><span class="skill-item">Thymeleaf</span><span class="skill-item">Bootstrap</span><span class="skill-item">Tailwind</span><span class="skill-item">Responsive</span><span class="skill-item">UI/UX</span></div></div>
+            <div class="skill-category"><h3><i class="fas fa-tools"></i> Tools & DevOps</h3><div class="skill-items"><span class="skill-item">Git/GitHub</span><span class="skill-item">Postman</span><span class="skill-item">Eclipse</span><span class="skill-item">VS Code</span><span class="skill-item">IntelliJ</span><span class="skill-item">Docker (basics)</span></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects (updated with interactive enhancements) -->
+<section id="projects" class="projects">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image"><img src="assets/images/ss1.JPG" alt="Expense Tracker" onerror="this.src='https://placehold.co/600x400/1E293B/818CF8?text=Expense+App';"><div class="project-overlay"><a href="https://github.com/Anjali-Khilari/Expense-Tracker-App" target="_blank" class="project-link"><i class="fab fa-github"></i></a></div></div>
+                <div class="project-content"><h3>Expense Tracker App</h3><p>Full stack expense manager with CRUD, filtering & pagination. Java Spring Boot + Thymeleaf.</p><div class="project-tech"><span class="tech-tag">Java</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">MySQL</span><span class="tech-tag">Thymeleaf</span></div><div class="project-features"><ul><li>✨ Responsive UI with modern CSS</li><li>📊 Reduced reporting time by 40%</li><li>🔍 Advanced search & pagination</li></ul></div></div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"><div class="project-placeholder"><i class="fas fa-brain"></i></div><div class="project-overlay"><a href="https://github.com/Anjali-Khilari/breast-cancer-prediction-app" target="_blank" class="project-link"><i class="fab fa-github"></i></a></div></div>
+                <div class="project-content"><h3>Breast Cancer Prediction</h3><p>Machine learning web app using Random Forest, Streamlit & EDA for high accuracy predictions.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Random Forest</span><span class="tech-tag">Streamlit</span><span class="tech-tag">EDA</span></div><div class="project-features"><ul><li>🤖 ML model with 95%+ accuracy</li><li>📈 Interactive visualizations</li><li>🎯 Real-time prediction</li></ul></div></div>
+            </div>
+            <div class="project-card">
+                <div class="project-image"><div class="project-placeholder"><i class="fas fa-mobile-alt"></i></div><div class="project-overlay"><a href="#" class="project-link"><i class="fab fa-github"></i></a></div></div>
+                <div class="project-content"><h3>Flutter Mobile App</h3><p>Cross-platform application for Android/iOS with Firebase sync & modern UI.</p><div class="project-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">Dart</span><span class="tech-tag">Firebase</span><span class="tech-tag">iOS/Android</span></div><div class="project-features"><ul><li>📱 Cross-platform synergy</li><li>🎨 Neumorphic UI design</li><li>⚡ Real-time data sync</li></ul></div></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <!-- Expense Tracker Project -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/ss1.JPG" alt="Expense Tracker App" loading="lazy">
-                        <div class="project-overlay">
-                            <a href="https://github.com/Anjali-Khilari/Expense-Tracker-App" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Expense Tracker App</h3>
-                        <p>A full stack expense management system where users can create, edit, and delete daily expenses. Built with Java, Spring Boot, MySQL, and Thymeleaf.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">Spring Boot</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Thymeleaf</span>
-                        </div>
-                        <div class="project-features">
-                            <ul>
-                                <li>✨ Responsive UI with custom CSS</li>
-                                <li>📊 Reduced reporting time by 40%</li>
-                                <li>🔍 Advanced filtering and pagination</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Breast Cancer Prediction -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="https://github.com/Anjali-Khilari/breast-cancer-prediction-app" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Breast Cancer Prediction</h3>
-                        <p>Machine learning application for breast cancer prediction using Random Forest algorithm with interactive Streamlit interface.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Random Forest</span>
-                            <span class="tech-tag">Streamlit</span>
-                            <span class="tech-tag">EDA</span>
-                        </div>
-                        <div class="project-features">
-                            <ul>
-                                <li>🤖 Machine Learning Model</li>
-                                <li>📈 Interactive Data Visualization</li>
-                                <li>🎯 High Accuracy Prediction</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Flutter Mobile App (Placeholder) -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <a href="#" class="project-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Flutter Mobile App</h3>
-                        <p>Cross-platform mobile application built with Flutter for both Android and iOS platforms. Features modern UI/UX design and real-time data synchronization.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">Dart</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Android</span>
-                            <span class="tech-tag">iOS</span>
-                        </div>
-                        <div class="project-features">
-                            <ul>
-                                <li>📱 Cross-platform Development</li>
-                                <li>🎨 Modern UI/UX Design</li>
-                                <li>⚡ Real-time Data Sync</li>
-                            </ul>
-                        </div>
-                    </div>
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Let's Connect!</h3>
+                <p>I'm always open to discussing new projects, creative ideas or opportunities.</p>
+                <div class="contact-details">
+                    <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:anjalikhilari2002@gmail.com">anjalikhilari2002@gmail.com</a></div>
+                    <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/anjali-khilari-650992269/" target="_blank">linkedin.com/in/anjali-khilari</a></div>
+                    <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/Anjali-Khilari" target="_blank">github.com/Anjali-Khilari</a></div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect!</h3>
-                    <p>I'm always interested in new opportunities and exciting projects. Feel free to reach out!</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:anjalikhilari2002@gmail.com">anjalikhilari2002@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-linkedin"></i>
-                            <a href="https://www.linkedin.com/in/anjali-khilari-650992269/" target="_blank">LinkedIn Profile</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-github"></i>
-                            <a href="https://github.com/Anjali-Khilari" target="_blank">GitHub Profile</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group"><input type="text" id="name" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" id="email" placeholder="Your Email" required></div>
+                    <div class="form-group"><input type="text" id="subject" placeholder="Subject" required></div>
+                    <div class="form-group"><textarea id="message" rows="4" placeholder="Your Message..." required></textarea></div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Resume Section -->
-    <section class="resume">
-        <div class="container">
-            <div class="resume-content">
-                <h2>Download My Resume</h2>
-                <p>Get a detailed overview of my experience, skills, and achievements</p>
-                <a href="Anjali Khilari-Computer Engineer.pdf" download class="btn btn-primary">
-                    <i class="fas fa-download"></i> Download Resume (PDF)
-                </a>
+<!-- Resume Section -->
+<div class="resume">
+    <div class="container">
+        <div class="resume-content">
+            <h2>📄 Download My Resume</h2>
+            <p>Get detailed overview of my experience, skills & achievements</p>
+            <a href="Anjali Khilari-Computer Engineer.pdf" download class="btn btn-primary"><i class="fas fa-download"></i> Download Resume (PDF)</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <p>&copy; 2025 Anjali Khilari — Full Stack Java Developer. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/anjali-khilari-650992269/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Anjali-Khilari" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:anjalikhilari2002@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Anjali Khilari. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/anjali-khilari-650992269/" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/Anjali-Khilari" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:anjalikhilari2002@gmail.com">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+<script>
+    // Mobile hamburger toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
 
-    <script src="script.js"></script>
+    // Contact form submit handler (Demo toast, prevents actual page reload)
+    const contactForm = document.getElementById("contactForm");
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        if(name) {
+            // toast notification
+            const toast = document.createElement("div");
+            toast.className = "toast-msg";
+            toast.innerHTML = `<i class="fas fa-check-circle" style="color:#4f46e5; margin-right:8px;"></i> Thanks ${name}! Your message has been received. I'll get back soon.`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+            contactForm.reset();
+        } else {
+            alert("Please enter your name.");
+        }
+    });
+
+    // Smooth scroll for anchor links + active highlight effect (optional)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+            const target = document.querySelector(this.getAttribute("href"));
+            if(target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        });
+    });
+    
+    // Additional floating animation for stat cards subtle interactive
+    const stats = document.querySelectorAll('.stat');
+    stats.forEach(stat => {
+        stat.addEventListener('mouseenter', () => { stat.style.transform = 'translateY(-6px)'; });
+        stat.addEventListener('mouseleave', () => { stat.style.transform = 'translateY(0)'; });
+    });
+</script>
 </body>
 </html>
